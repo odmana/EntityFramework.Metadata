@@ -1,7 +1,9 @@
 using System;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.SqlServer.Types;
 using NUnit.Framework;
 
 namespace EntityFramework.Metadata.Test.CodeFirst
@@ -13,6 +15,9 @@ namespace EntityFramework.Metadata.Test.CodeFirst
         [SetUp]
         public virtual void Setup()
         {
+            SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
+            SqlProviderServices.SqlServerTypesAssemblyName = typeof(SqlGeography).Assembly.FullName;
+
             if (!Database.Exists("TestContext"))
             {
                 Database.SetInitializer(new CreateDatabaseIfNotExists<TestContext>());
