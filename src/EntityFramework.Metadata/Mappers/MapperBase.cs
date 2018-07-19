@@ -343,7 +343,6 @@ namespace EntityFramework.Metadata.Mappers
                 });
 
                 if (edmMember2 == null) {
-                    i++;
                     continue;
                 }
 
